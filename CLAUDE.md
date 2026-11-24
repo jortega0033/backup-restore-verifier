@@ -6,7 +6,7 @@ Working instructions for this repository. Read this file first, then the documen
 
 A local workbench for a freelancer or small team: save a reference manifest, restore a prepared folder or ZIP backup into a fresh directory, and read which files matched, changed, were missing or appeared unexpectedly. The report is the same after a restart and the fixtures stay untouched. Python 3.11 standard library and SQLite on Linux, `127.0.0.1` only, generated files only.
 
-**Nothing is implemented yet.** The repository holds the plan, the delivery tooling and the backlog in epic #1. Commands marked planned below do not work yet. Do not describe a planned thing as working, and do not claim a passing baseline: there is none.
+**Only the scaffold exists; there is no product behaviour yet.** The repository holds the plan, the delivery tooling, the runnable scaffold (modules, smoke tests, CI) and the backlog in epic #1. Commands marked planned below do not work yet. Do not describe a planned thing as working; the smoke tests prove only that modules import and help and version run.
 
 ## Sources of truth
 
@@ -40,8 +40,8 @@ Python 3.11 or newer (3.11 and 3.13 in CI). No install step is needed. The last 
 
 | Purpose | Command | Status |
 |---|---|---|
-| Tests | `python -m unittest discover -s tests` | planned: real with the scaffold |
-| Help and version | `python -m restore_verifier --help` | planned: real with the scaffold |
+| Tests | `python -m unittest discover -s tests` | real (scaffold) |
+| Help and version | `python -m restore_verifier --help` | real (scaffold) |
 | Create the demo workspace | `python3 -m restore_verifier --workspace .restore-verifier init-demo` | planned: #2 |
 | Run the app | `python3 -m restore_verifier --workspace .restore-verifier serve` | planned: #2 |
 

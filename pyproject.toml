@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "restore-verifier"
+version = "0.0.0"
+description = "Local backup restore rehearsal and comparison workbench."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools]
+packages = ["restore_verifier"]
