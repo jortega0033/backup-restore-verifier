@@ -1,1 +1,1 @@
-# Workspace: marker, init, controlled locations, fixture seeding, lock (ticket #2).
+# Workspace: marker, init, controlled locations, fixture seeding, lock (tickets #2, #6).

@@ -1,1 +1,1 @@
-# Manifest: hashing, canonical bytes, identity (ticket #3).
+# Manifest: canonical bytes, identity (ticket #3).

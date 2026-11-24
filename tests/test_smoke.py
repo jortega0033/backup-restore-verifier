@@ -1,4 +1,4 @@
-# Scaffold smoke tests: every module imports, help and version work, one stub exits non-zero.
+# Scaffold smoke tests: every module imports, help and version work, the stubs exit non-zero.
 import importlib
 import subprocess
 import sys
@@ -44,9 +44,11 @@ class CommandLine(unittest.TestCase):
         self.assertIn("0.0.0", r.stdout)
 
     def test_stub_exits_non_zero(self):
-        r = run_cli("serve")
-        self.assertNotEqual(r.returncode, 0)
-        self.assertIn("not implemented yet: see #2", r.stderr)
+        for command in ("init-demo", "serve"):
+            with self.subTest(command=command):
+                r = run_cli("--workspace", ".restore-verifier", command)
+                self.assertNotEqual(r.returncode, 0)
+                self.assertIn("not implemented yet: see #2", r.stderr)
 
 
 if __name__ == "__main__":

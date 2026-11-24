@@ -1,1 +1,1 @@
-# Sources: descriptor-relative folder walk and ZIP member intake (tickets #3, #4).
+# Sources: descriptor-relative folder walk with hashing, ZIP member intake (tickets #3, #4).
