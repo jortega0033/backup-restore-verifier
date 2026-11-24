@@ -2,7 +2,7 @@
 
 A local test restore workbench that checks recovered files against a known manifest.
 
-This repository contains the plan for the first implementation epic.
+This repository contains the plan for the first implementation epic and a scaffold (module stubs, smoke tests, CI). No product behaviour is implemented yet.
 
 - [Product requirements](docs/PROJECT-PLAN.md#product-requirements)
 - [Technical design](docs/PROJECT-PLAN.md#technical-design)

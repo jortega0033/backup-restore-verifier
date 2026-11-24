@@ -1,25 +1,29 @@
 # Implementer map
 
-Status: **planned, not implemented.** This page maps the boundaries that [PROJECT-PLAN.md](PROJECT-PLAN.md) requires onto a module layout so that parallel tickets do not collide. It adds no requirement; the plan wins where they differ. The names are the orchestrator's proposal, fixed by the scaffold; a ticket that changes one corrects this page in the same pull request.
+Status: **scaffold only: the modules exist as empty stubs and no product behaviour is implemented.** This page maps the boundaries that [PROJECT-PLAN.md](PROJECT-PLAN.md) requires onto a module layout so that parallel tickets do not collide. It adds no requirement; the plan wins where they differ. The names are the orchestrator's proposal, fixed by the scaffold; a ticket that changes one corrects this page in the same pull request.
 
 ## Planned module map
 
 | Boundary | Module | Owns | Parent ticket |
 |---|---|---|---|
-| Path profile | `restore_verifier/paths.py` | Canonical relative paths, collisions, limits | #2 (contract), #3 |
-| Workspace | `restore_verifier/workspace.py` | Marker, init, controlled locations, fixture seeding, workspace lock | #2 |
-| Contracts | `restore_verifier/contracts.py` | Manifest, staged input, attempt and row shapes, states, limits | #2 |
-| Sources | `restore_verifier/sources.py` | Descriptor-relative folder walk, ZIP member intake | #3 (folder inventory), #4 |
-| Manifest | `restore_verifier/manifest.py` | Hashing, canonical bytes, identity | #3 |
-| Restore | `restore_verifier/restore.py` | Bounded streaming into a private tree, capacity checks | #4 |
+| Entry point | `restore_verifier/__main__.py` | Command line parsing, `init-demo`, `serve`, `preflight` | #2 |
+| Path profile | `restore_verifier/paths.py` | Canonical relative paths, collisions, path length and depth limits | #3, #4 |
+| Workspace | `restore_verifier/workspace.py` | Marker, init, controlled locations, fixture seeding; workspace lock | #2; #6 (lock) |
+| Contracts | `restore_verifier/contracts.py` | Manifest, staged input, attempt and row shapes, states, limits, reason codes | #2, #4 (reason codes) |
+| Sources | `restore_verifier/sources.py` | Descriptor-relative folder walk with incremental hashing, ZIP member intake | #3 (folder inventory), #4 |
+| Manifest | `restore_verifier/manifest.py` | Canonical bytes, identity | #3 |
+| Restore | `restore_verifier/restore.py` | Bounded streaming into a private tree, capacity checks | #4, #6 (attempt quota) |
 | Compare | `restore_verifier/compare.py` | Second read of the output, join, counts, outcome | #5 |
-| Storage | `restore_verifier/store.py` | SQLite records, request IDs, final commit, reports | #5, #6 |
+| Storage | `restore_verifier/store.py` | SQLite records, request IDs, final commit, reports | #3 (manifests), #5, #6 |
 | Jobs | `restore_verifier/jobs.py` | One worker, progress, cancellation, interruption, retry | #5 (one run), #6 |
-| HTTP | `restore_verifier/server.py` | Loopback bind, request guards, routes, static assets | #2, #5, #6 |
+| HTTP | `restore_verifier/server.py` | Loopback bind, request guards, routes, static assets | #2, #3 (manifests route), #5, #6 |
 | Browser assets | `restore_verifier/static/` | Start, progress, result table, history | #2, #5, #6 |
-| Test oracle | `tests/oracle.py` | Direct reads of restored bytes against recorded expectations | #4, #5 |
+| Test oracle | `tests/oracle.py` | Direct reads of restored bytes against recorded expectations | #3, #4, #5, #7 |
+| Smoke tests | `tests/test_smoke.py` | Imports, help, version, command stubs | scaffold, #2 |
+| Demo server | `tests/demo_server.py` | Starts the server in process with constructor hooks (pause, small limits, extra inputs) for manual Chrome checks; never part of the package | #5, #6 |
+| Records | `docs/contracts-fixture.json`, `docs/preflight.md`, `docs/report-payload.md`, `docs/walkthrough.md`, `docs/accepted-formats.md` | Contract fixture, observed versions, report payload, walkthrough, formats and limits | #2, #2, #5, #7, #7 |
 
-Dependency direction: `server` depends on `jobs` and `store`; `jobs` on `restore`, `compare` and `store`; `restore` and `manifest` on `sources`; `sources` on `paths`; all on `contracts`, which imports nothing from the package. `tests/oracle.py` imports nothing from the package.
+Dependency direction: `__main__` depends on `server` and `workspace`; `server` on `jobs`, `store`, `workspace`, `manifest` and `sources`; `jobs` on `restore`, `compare` and `store`; `restore` on `sources`; `sources` and `manifest` on `paths`; all on `contracts`, which imports nothing from the package. `tests/oracle.py` imports nothing from the package.
 
 ## Freeze points
 
