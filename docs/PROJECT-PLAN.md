@@ -1,5 +1,7 @@
 # Backup Restore Verifier
 
+> This document specifies phase 1 of the program in [#35](https://github.com/jortega0033/backup-restore-verifier/issues/35). Hour figures in it are early estimates for that phase; its open tickets add up to 48 to 78 hours (2026-11-24). Work that it defers is planned in the later phases only where the program names it.
+
 ## Product requirements
 
 **Problem.** A person maintaining a small project can produce a backup without knowing whether it still contains all the files they need. An archive opening successfully does not establish that its contents match a known version. The proposed audience is a freelancer or small project team running a recovery rehearsal with generated documents and media fixtures. This audience is a planning assumption.

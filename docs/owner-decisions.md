@@ -36,3 +36,14 @@ The plan leaves these open. Each is a recommendation by the orchestrator, adopte
 | #6 | Test hooks | Pauses, small limits and quotas are set through constructor arguments in tests, never through an HTTP request or an environment variable. |
 | #7 | Owner checks | The Chrome walkthrough runs on a Linux host or in WSL. |
 | none | Licence | MIT, already in the repository (`LICENSE`). No ticket changes it. |
+
+## Program decisions (owner, 2026-11-24)
+
+The owner accepted the goal and each suggestion below. They apply from the phase they name; the rules of `CLAUDE.md` hold for phase 1 as written.
+
+| Decision | Implemented in |
+|---|---|
+| The repository has a program goal above phase 1: a recovery engine that proves and repairs backups, in 6 phases. | Program issue #35 |
+| Phase 1 reads ZIP with the Python zipfile module. Suggested: keep that rule; from phase 2 the own decoders decide and zipfile is one of the judges. | Program issue #35 |
+| Raw devices and real backups are dangerous. Suggested: generated image files only; no device is ever opened. | Program issue #35 |
+| The first release runs on Linux only. Suggested: the Linux job runs everything, the Windows job runs the portable tests and lists what it skips. | Program issue #35 |
